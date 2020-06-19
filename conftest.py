@@ -6,7 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture(scope="function", autouse=True)
 def driver(request):
-    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), service_log_path='NUL')
     driver.implicitly_wait(10)
 
     yield driver
