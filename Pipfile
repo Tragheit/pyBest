@@ -7,13 +7,14 @@ verify_ssl = true
 autopep8 = "*"
 pylint = "*"
 rope = "*"
+python-language-server = "*"
 
 [packages]
 pytest = "*"
 pytest-bdd = "*"
 selenium = "*"
 webdriver-manager = "*"
-python-language-server = "*"
+pytest-sugar = "*"
 
 [requires]
 python_version = "3.8"
