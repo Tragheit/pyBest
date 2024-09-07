@@ -2,12 +2,12 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
 class DuckDuckGoResultPage(BasePage):
-    LINK_DIVS = (By.CSS_SELECTOR, '#links > div')
+    LINK_DIVS = (By.XPATH, '//a[@data-testid="result-title-a"]')
     SEARCH_INPUT = (By.ID, 'search_form_input')
 
     @classmethod
     def PHRASE_RESULTS(cls, phrase):
-        xpath = f"//div[@id='links']//*[contains(text(), '{phrase}')]"
+        xpath = f"//a[@data-testid='result-title-a']//*[contains(., '{phrase}')]"
         return (By.XPATH, xpath)
 
     def __init__(self, browser):

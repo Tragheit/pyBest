@@ -1,7 +1,7 @@
 import pytest
 
 from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -18,13 +18,15 @@ def preview(request):
 
 @pytest.fixture(scope="function", autouse=True)
 def driver(preview, request):
-    options = webdriver.FirefoxOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument('--window-size=1920,1080')
+    options.add_argument("--search-engine-choice-country")
+
 
     if not preview:
         options.add_argument('--headless')
 
-    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), service_log_path='NUL', options=options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.implicitly_wait(10)
 
     yield driver
